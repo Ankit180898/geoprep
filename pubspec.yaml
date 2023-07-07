@@ -69,6 +69,7 @@ dependencies:
   video_player:
   flutter_custom_dialog:
   device_imei:
+  upi_india:
 
 dev_dependencies:
   flutter_test:
