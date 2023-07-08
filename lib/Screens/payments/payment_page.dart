@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:geoprep/Controller/Dashboard/dashboard_controller.dart';
+import 'package:geoprep/Screens/payments/upi_payment.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:in_app_purchases_paywall_ui/in_app_purchases_paywall_ui.dart';
@@ -16,10 +18,11 @@ class PaymentPage extends StatefulWidget {
   @override
   State<PaymentPage> createState() => _PaymentPageState();
 }
-
+var amount;
 class _PaymentPageState extends State<PaymentPage> {
 
   final _razorpay = Razorpay();
+  var controller=Get.find<DashBoardController>();
 
   @override
   void initState() {
@@ -71,7 +74,7 @@ class _PaymentPageState extends State<PaymentPage> {
         'Basic ${base64Encode(utf8.encode('$username:$password'))}';
 
     Map<String, dynamic> body = {
-      "amount": 100,
+      "amount": 1,
       "currency": "INR",
       "receipt": "rcptid_11"
     };
@@ -231,7 +234,8 @@ class _PaymentPageState extends State<PaymentPage> {
                   ElevatedButton(
                     child: Text("Pay now"),
                     onPressed: () {
-                      createOrder();
+                      controller.amount=amount;
+                      Get.to(UpiPayment());
                     },
                   )
                 ])),
@@ -269,9 +273,11 @@ class PurchaseHandler extends DefaultPurchaseHandler {
   @override
   Future<bool> purchase(SubscriptionData productDetails) async {
     print("purchase start");
+
     isPendingPurchase = true;
     await Future.delayed(Duration(seconds: 1));
     print("purchase done");
+    amount=productDetails.price;
     purchaseState = PurchaseState.PURCHASED;
     isPendingPurchase = false;
     return true;

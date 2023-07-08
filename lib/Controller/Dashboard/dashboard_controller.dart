@@ -33,7 +33,7 @@ var isLoading=false.obs;
    print("subcat: ${PreferenceUtils.getString("subCatKey")}");
 
   }
-
+var amount;
 var isVideo=true.obs;
 var coursesListSelection = <CourseListModel>[].obs;
 

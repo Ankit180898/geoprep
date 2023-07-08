@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:geoprep/Controller/Dashboard/dashboard_controller.dart';
+import 'package:get/get.dart';
 import 'package:upi_india/upi_india.dart';
 
 
@@ -9,6 +11,9 @@ class UpiPayment extends StatefulWidget {
 }
 
 class _UpiPaymentState extends State<UpiPayment> {
+
+  var controller=Get.find<DashBoardController>();
+
   Future<UpiResponse>? _transaction;
   UpiIndia _upiIndia = UpiIndia();
   List<UpiApp>? apps;
@@ -22,9 +27,9 @@ class _UpiPaymentState extends State<UpiPayment> {
     fontWeight: FontWeight.w400,
     fontSize: 14,
   );
-
   @override
   void initState() {
+    print("total: ${controller.amount.toString().replaceAll(RegExp(r'[^\w\s]+'),'')}");
     _upiIndia.getAllUpiApps(mandatoryTransactionId: false).then((value) {
       setState(() {
         apps = value;
@@ -34,15 +39,15 @@ class _UpiPaymentState extends State<UpiPayment> {
     });
     super.initState();
   }
-
   Future<UpiResponse> initiateTransaction(UpiApp app) async {
+    var price=controller.amount.toString().replaceAll(RegExp(r'[^\w\s]+'),'');
     return _upiIndia.startTransaction(
       app: app,
       receiverUpiId: "7070400517@ybl",
       receiverName: 'Ankit Kumar',
       transactionRefId: 'TestingUpiIndiaPlugin',
       transactionNote: 'Not actual. Just an example.',
-      amount: 1.00,
+      amount: double.parse(price),
     );
   }
 
