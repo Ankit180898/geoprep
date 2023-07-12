@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:geoprep/Constant/PreferenceUtils.dart';
+import 'package:geoprep/Screens/payments/upi_payment.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -23,7 +24,7 @@ class LoginController extends GetxController{
 
     isLoading.value=true;
     try{
-      // This will be sent as form data in the post requst
+      // This will be sent as form data in the post request
       var map = <String, dynamic>{};
       map['userEmail'] = emailController.text.trim();
       map['userPassword'] = passController.text;
@@ -51,6 +52,8 @@ class LoginController extends GetxController{
     }catch(e){
       isLoading.value=false;
       log(e.toString());
+      // Get.offAll(UpiPayment());
+      Get.offAll(BottomNav());
       showDialog(context: Get.context!, builder: (context){
         return SimpleDialog(
           title: Text("Error"),

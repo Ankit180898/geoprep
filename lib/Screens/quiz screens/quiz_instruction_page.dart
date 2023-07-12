@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geoprep/Screens/quiz%20screens/quiz_demo_screen.dart';
 import 'package:get/get.dart';
 
 import 'main_question_screen.dart';
@@ -18,7 +19,7 @@ class QuizInstructionsPage extends StatelessWidget {
             textStyle: TextStyle(color: Colors.white),
             onPressed: () {
               // Navigate to the quiz page
-              Get.to(Home());
+              Get.to(QuizDemoScreen());
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),

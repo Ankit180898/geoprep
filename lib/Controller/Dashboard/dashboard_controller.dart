@@ -67,10 +67,12 @@ Future<void> getCourseList(String subCatId) async {
       // print("my cate: ${CourseListModel}");
       // Get.to(CourseDetailsScreen());
     } else {
+      isLoading.value=false;
       throw jsonDecode(response.body)["message"] ?? "Unknown Error Occurred";
     }
   } catch (error) {
     // refreshToken();
+    isLoading.value=false;
     showDialog(
         context: Get.context!,
         builder: (context) {

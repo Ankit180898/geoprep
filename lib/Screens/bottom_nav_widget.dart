@@ -27,9 +27,9 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex = 0;
-  int index_x=0;
+  int index_x = 0;
 
-  final screens=[
+  final screens = [
     DashboardScreen(),
     const SubMaterialScreen(),
     const PaymentPage()
@@ -47,18 +47,34 @@ class _BottomNavState extends State<BottomNav> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black,
         body: screens[index_x],
-        bottomNavigationBar: BottomNavigationBar(
+        bottomNavigationBar: Container(
+          height: 70,
+          decoration: BoxDecoration(
+            color: Colors.blueAccent,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: BottomNavigationBar(
+            elevation: 0.0,
+            backgroundColor: Colors.transparent,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_rounded),
-                  label: 'Home',
-                  backgroundColor: Colors.grey.shade100),
+                icon: Icon(Icons.home_rounded),
+                label: 'Home',
+              ),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.file_present_rounded),
-                  label: 'Materials',
-                  backgroundColor: Colors.grey.shade100),
+                icon: Icon(Icons.file_present_rounded),
+                label: 'Materials',
+              ),
               BottomNavigationBarItem(
                 icon: Image.asset(
                   'assets/images/geoprep.png',
@@ -66,13 +82,11 @@ class _BottomNavState extends State<BottomNav> {
                   height: 30.0,
                 ),
                 label: 'Plans',
-                backgroundColor: Colors.grey.shade300,
               ),
             ],
-            type: BottomNavigationBarType.shifting,
+            type: BottomNavigationBarType.fixed,
             currentIndex: index_x,
-            selectedIconTheme: IconThemeData(color: Colors.lightBlueAccent),
-            selectedItemColor: Colors.lightBlueAccent,
+            selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,
             selectedLabelStyle: const TextStyle(
               color: Colors.black,
@@ -86,7 +100,8 @@ class _BottomNavState extends State<BottomNav> {
             ),
             iconSize: 30,
             onTap: _onItemTapped,
-            elevation: 5),
+          ),
+        ),
       ),
     );
   }

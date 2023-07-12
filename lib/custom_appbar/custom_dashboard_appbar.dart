@@ -12,8 +12,17 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Style.lightyellow,
-      elevation: 2,
+      backgroundColor: Colors.transparent,
+      elevation: 5,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0.84, -0.54),
+            end: Alignment(-0.84, 0.54),
+            colors: [Color(0xFF3550DC), Color(0xFF27E9F7)],
+          ),
+        ),
+      ),
       leading: Padding(
         padding: const EdgeInsets.all(10.0),
         child: CircleAvatar(
@@ -28,14 +37,13 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               padding: EdgeInsets.all(8),
               child: TextField(
                  /* onChanged: onTextChange,*/
-                cursorColor: Colors.lightBlueAccent,
+                cursorColor: Colors.black,
                   decoration: InputDecoration(
-                      fillColor: Colors.black.withOpacity(0.1),
+                      fillColor: Colors.white,
                       filled: true,
                       prefixIcon: Icon(Icons.search),
-                      prefixIconColor: Colors.lightBlueAccent,
+                      prefixIconColor: Colors.black,
                       hintText: 'Search here ...',
-
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
                       contentPadding: EdgeInsets.zero
                   )
@@ -60,7 +68,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               },
               icon: Icon(
                 Icons.power_settings_new,
-                color: Colors.black,
+                color: Colors.white,
               ),
               // icon: Stack(
               //   clipBehavior: Clip.none,
