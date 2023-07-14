@@ -18,6 +18,8 @@ import '../custom_appbar/custom_dashboard_appbar.dart';
 import 'components/itams.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import 'components/navdrawer.dart';
+
 class DashboardScreen extends StatefulWidget {
   DashboardScreen({Key? key}) : super(key: key);
 
@@ -86,6 +88,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     // CarouselController carouselControllercontroller = CarouselController();
 
     return Scaffold(
+      drawer: NavDrawer(),
       appBar: CustomAppbar(),
       body: SingleChildScrollView(
         child: Obx(()=>

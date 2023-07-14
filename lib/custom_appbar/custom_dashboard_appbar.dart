@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geoprep/Constant/PreferenceUtils.dart';
+import 'package:geoprep/Screens/components/navdrawer.dart';
 
 import '../all_colors.dart';
 
@@ -13,28 +14,31 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
-      elevation: 5,
+      elevation: 0,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(0.84, -0.54),
-            end: Alignment(-0.84, 0.54),
-            colors: [Color(0xFF3550DC), Color(0xFF27E9F7)],
-          ),
+            gradient: LinearGradient(
+              begin: Alignment(-0.84, 0.54),
+              end: Alignment(0.84, -0.54),
+              colors: [Color(0xFF3550DC), Color(0xFF27E9F7)],
+            ),
         ),
       ),
       leading: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: CircleAvatar(
-          backgroundImage: AssetImage('assets/images/demo_profile.jpg'),
+        child: InkWell(
+          onTap: ()=>Scaffold.of(context).openDrawer(),
+          child: CircleAvatar(
+            backgroundImage: AssetImage('assets/images/demo_profile.jpg'),
+          ),
         ),
       ),
       centerTitle: true,
       title: Column(
         children: [
           Container(
-              height: 50,
-              padding: EdgeInsets.all(8),
+              height: 60,
+              padding: EdgeInsets.all(10),
               child: TextField(
                  /* onChanged: onTextChange,*/
                 cursorColor: Colors.black,
@@ -44,7 +48,7 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
                       prefixIcon: Icon(Icons.search),
                       prefixIconColor: Colors.black,
                       hintText: 'Search here ...',
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide.none),
                       contentPadding: EdgeInsets.zero
                   )
               )
