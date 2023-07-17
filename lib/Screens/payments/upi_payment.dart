@@ -43,10 +43,9 @@ class _UpiPaymentState extends State<UpiPayment> {
     var price=controller.amount.toString().replaceAll(RegExp(r'[^\w\s]+'),'');
     return _upiIndia.startTransaction(
       app: app,
-      receiverUpiId: "7070400517@ybl",
-      receiverName: 'Ankit Kumar',
+      receiverUpiId: "Q524240175@ybl",
+      receiverName: 'Geoprep',
       transactionRefId: 'TestingUpiIndiaPlugin',
-      transactionNote: 'Not actual. Just an example.',
       amount: double.parse(price),
     );
   }

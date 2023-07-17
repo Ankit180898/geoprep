@@ -52,8 +52,8 @@ class LoginController extends GetxController{
     }catch(e){
       isLoading.value=false;
       log(e.toString());
-      // Get.offAll(UpiPayment());
-      Get.offAll(BottomNav());
+      //Get.offAll(UpiPayment());
+      // Get.offAll(BottomNav());
       showDialog(context: Get.context!, builder: (context){
         return SimpleDialog(
           title: Text("Error"),
